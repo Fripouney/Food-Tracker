@@ -25,4 +25,9 @@ class ShoppingListsController < ApplicationController
     }
     end
   end
+
+  def mark_as_done
+    @shopping_list = ShoppingList.find(params[:id])
+
+  end
 end

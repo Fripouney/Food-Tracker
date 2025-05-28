@@ -15,12 +15,22 @@ class Fridge < ApplicationRecord
     end
     all_missing_ingredients
   end
+
+  # Called when a shopping list is marked as done
   def add_ingredients(ingredients)
-    # TODO
+    # Loop on ingredients passed in parameter
+    # For each ingredient search if there is an existing record in fridge with the same ingredient spoonacular id AND expiration date
+    # If no record was found then add a new record with the ingredient data
+    # If a record was found, add the ingredient quantity to the existing record
   end
 
+  # Called when a recipe is cooked
   def remove_ingredients(ingredients)
-    # TODO
+    # Loop on ingredients in parameter
+    # For each ingredient there should be at least one record in fridge
+    # For each record :
+    # # If quantity in record is greater than quantity necessary, then simply subtract the quantity in record
+    # # If quantity in record is smaller than necessary quantity, then destroy this record and go to the next one, loop
   end
 
   def add_to_array(array, ingredient, base_quantity = 0)

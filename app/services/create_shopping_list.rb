@@ -1,14 +1,14 @@
 class CreateShoppingList
   attr_reader :name, :ingredient_params
 
-  def initialize(name, ingredient_params=[])
+  def initialize(name, ingredient_params = [])
     @name = name
     @ingredient_params = ingredient_params
   end
 
   def call
     ingredient_check = check_ingredients
-    return { status: :error, message: 'invalid_ingredient_list' } unless ingredient_check
+    return { status: :error, message: "invalid_ingredient_list" } unless ingredient_check
     list = ShoppingList.create(name:, done: false)
     list.ingredients.insert_all(ingredient_params)
     list
@@ -17,7 +17,13 @@ class CreateShoppingList
   private
 
   def check_ingredients
-    true
+    validation = true
+    if ingredient_params.class == Array
+      ingredient_params.each do |ingredient_param|
+        validation = false unless ingredient_param.class == Hash
+      end
+    end
+    validation
   end
 end
 

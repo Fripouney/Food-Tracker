@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  type: 
+  quantity: MyString
+  unit: MyString
+  expiration_date: MyString
+  ingredientable: one
+  ingredientable_type: Ingredientable
+
+two:
+  name: MyString
+  type: 
+  quantity: MyString
+  unit: MyString
+  expiration_date: MyString
+  ingredientable: two
+  ingredientable_type: Ingredientable

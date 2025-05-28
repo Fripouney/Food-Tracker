@@ -53,6 +53,7 @@ class RecipesController < ApplicationController
       render json: { message: "Recipe has been cooked !" }
     else
       # Need to call shopping list creation endpoint but HOW ??
+      # This causes a deadlock because API calls itself
       conn = Faraday.new("http://localhost:3000") do |f|
         f.request :json
         f.response :raise_error

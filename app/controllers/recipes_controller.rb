@@ -45,9 +45,7 @@ class RecipesController < ApplicationController
   end
 
   def cook
-    recipe = Recipe.find(params[:recipe_id])
-    fridge = Fridge.find(params[:fridge_id])
-    cook_service = CookRecipe.new(fridge, recipe).call
+    cook_service = CookRecipe.new(params[:fridge_id], params[:recipe_id]).call
 
     if cook_service[:enough_ingredients]
       render json: { message: "Recipe cooked successfully" }, status: :ok

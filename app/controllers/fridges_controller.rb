@@ -4,14 +4,26 @@ class FridgesController < ApplicationController
     render json: @fridges
   end
 
+  def show
+    @fridge = Fridge.find(params[:id])
+    render json: {
+      id: @fridge.id,
+      name: @fridge.name,
+      ingredients: @fridge.ingredients
+    }
+  end
+
   def create
     unless params[:name].present?
       render json: { error: "Parameter 'name' cannot be blank" }, status: :bad_request
     end
 
-    @fridge = Fridge.new(params[:name])
+    @fridge = Fridge.new(name: params[:name])
     if @fridge.save
-      render json: @fridge, status: :created
+      render json: {
+        message: "Fridge created successfully",
+        fridge: @fridge
+      }
     else
       render json: @fridge.errors, status: :unprocessable_content
     end

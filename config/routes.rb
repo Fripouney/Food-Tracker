@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :fridges
   resources :recipes
+  post "recipes/:recipe_id/cook", to: "recipes#cook"
   resources :shopping_lists
 
   root to: "fridges#index"

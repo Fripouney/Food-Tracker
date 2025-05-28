@@ -9,7 +9,8 @@ class MarkShoppingList
   end
 
   def call
-    fridge.add_ingredients(recipe.ingredients)
+    fridge.add_ingredients(shopping_list.ingredients)
+    shopping_list.done = true
     {
       message: "Shopping list #{shopping_list.id} has been marked as done and ingredients have been added to the fridge",
       fridge_id: fridge.id

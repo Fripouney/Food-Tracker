@@ -27,7 +27,7 @@ class ShoppingListsController < ApplicationController
   end
 
   def mark_as_done
-    @shopping_list = ShoppingList.find(params[:id])
-
+    service_result = MarkShoppingList.new(params[:shopping_list_id], params[:fridge_id]).call
+    render json: service_result
   end
 end

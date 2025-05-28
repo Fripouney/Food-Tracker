@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :recipes
   post "recipes/:recipe_id/cook", to: "recipes#cook"
   resources :shopping_lists
+  post "shopping_lists/:shopping_list_id/done", to: "shopping_lists#mark_as_done"
 
   root to: "fridges#index"
   # Defines the root path route ("/")

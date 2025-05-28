@@ -18,10 +18,17 @@ class Fridge < ApplicationRecord
 
   # Called when a shopping list is marked as done
   def add_ingredients(ingredients)
-    # Loop on ingredients passed in parameter
-    # For each ingredient search if there is an existing record in fridge with the same ingredient spoonacular id AND expiration date
-    # If no record was found then add a new record with the ingredient data
-    # If a record was found, add the ingredient quantity to the existing record
+    ingredients.each do |ingredient|
+      matches = self.ingredients.select {
+        |i| i.spoonacular_id == ingredient[:spoonacular_id] and i.expiration_date == ingredient[:expiration_date]
+      }
+      if matches.empty?
+        self.ingredients.insert(ingredient)
+      else
+        matches.first.quantity += ingredient[:quantity]
+        self.ingredients.update(matches.first.id, matches.first)
+      end
+    end
   end
 
   # Called when a recipe is cooked

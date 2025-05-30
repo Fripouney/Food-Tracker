@@ -29,7 +29,7 @@ class FridgesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     unless params[:id].present?
       render json: { error: "Parameter 'id' cannot be blank" }, status: :bad_request
     end

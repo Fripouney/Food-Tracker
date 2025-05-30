@@ -17,12 +17,21 @@ class ShoppingListsController < ApplicationController
     service_result = CreateShoppingList.new("Shopping List for #{params[:name]}", params[:ingredients]).call
     case service_result
     in { status: :error, message: message }
-      render json: { error: message }, status: :unprocessable_entity
+      render json: { error: message }, status: :unprocessable_content
     else
       render json: {
       message: "Shopping List created successfully",
       shopping_list: service_result
     }
+    end
+  end
+
+  def destroy
+    @shopping_list = ShoppingList.find(params[:id])
+    if @shopping_list.destroy
+      render json: { message: "Shopping List destroyed" }, status: :ok
+    else
+      render json: { error: "Shopping List not found" }, status: :not_found
     end
   end
 

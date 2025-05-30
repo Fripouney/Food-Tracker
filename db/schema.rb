@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_28_082457) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_30_142526) do
   create_table "fridges", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_28_082457) do
     t.integer "spoonacular_id"
     t.string "name"
     t.string "ingredient_type"
-    t.string "quantity"
+    t.integer "quantity"
     t.string "unit"
     t.string "expiration_date"
     t.string "ingredientable_type", null: false
